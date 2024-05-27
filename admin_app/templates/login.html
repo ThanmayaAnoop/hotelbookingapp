@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Login</title>
+    <title>AdminLogin</title>
 </head>
 <body>
-    <h1>Admin Login</h1>
+    <h2>AdminLogin</h2>
     <form method="post">
-        <!-- Add your login form here -->
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>
+
