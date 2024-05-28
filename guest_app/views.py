@@ -16,11 +16,11 @@ def guest_login_view(request):
                 form.add_error(None, 'Invalid username or password')
     else:
         form = GuestLoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'guestlogin.html', {'form': form})
 
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def guest_home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'guesthome.html')
 

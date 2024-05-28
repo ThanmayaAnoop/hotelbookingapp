@@ -16,10 +16,10 @@ def hotel_login_view(request):
                 form.add_error(None, 'Invalid username or password')
     else:
         form = HotelLoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'hotellogin.html', {'form': form})
 
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def hotel_home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'hotelhome.html')

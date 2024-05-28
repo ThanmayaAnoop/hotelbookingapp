@@ -1,0 +1,27 @@
+<!-- admin_app/templates/admin_app/hotel_list.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel List</title>
+</head>
+<body>
+    <h1>Hotel List</h1>
+
+    <h2>Active:</h2>
+    <ul>
+        {% for hotel in active_hotels %}
+        <li><a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a> ({{ hotel.total_rooms }} Rooms) ({{ hotel.total_occupancy }} Occupants) ({{ hotel.star_rating }} Star)</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Draft:</h2>
+    <ul>
+        {% for hotel in draft_hotels %}
+        <li><a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a> (N/A) (N/A) ({{ hotel.star_rating }} Star)</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
