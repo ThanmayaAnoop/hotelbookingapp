@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Hotel(models.Model):
     STATUS_CHOICES = (
         ('Active', 'Active'),
@@ -20,28 +21,27 @@ class Hotel(models.Model):
         return self.name
 
     def total_rooms(self):
-        return self.room_set.count()
+         return self.room_set.count()
 
     def total_occupancy(self):
         return sum(room.occupancy for room in self.room_set.all())
 
 class Room(models.Model):
+    name = models.CharField(max_length=255)
+    entry_fee = models.DecimalField(max_digits=10, decimal_places=2)
+    max_occupancy_adults = models.IntegerField()
+    max_occupancy_children = models.IntegerField()
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100,  default='Standard Room')  # New field
-    entry_fee = models.DecimalField(max_digits=10, decimal_places=2,default=0.0)  # New field
-    max_occupancy_adults = models.PositiveIntegerField(default=2)  # New field
-    max_occupancy_children = models.PositiveIntegerField(default=0)  # New field
-    occupancy = models.PositiveIntegerField()
-    def __str__(self):
-        return f'{self.hotel.name} Room'
+    occupancy = models.IntegerField(default=0)  # Ensure this field is correctly handled
 
+    def __str__(self):
+      return f'{self.hotel.name} Room'
 # admin_app/models.py
 
 class Booking(models.Model):
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     checkin_date = models.DateField()
     checkout_date = models.DateField()
 
     def __str__(self):
-        return f'Booking at {self.hotel.name} for {self.room.name}'
+        return f"Booking for {self.room.name} from {self.checkin_date} to {self.checkout_date}"

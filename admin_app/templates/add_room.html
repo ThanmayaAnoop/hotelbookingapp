@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Room</title>
+</head>
+<body>
+    <h1>Add Room for {{ hotel.name }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Room</button>
+    </form>
+</body>
+</html>
+
+
+<a href="{% url 'add_room' hotel.id %}">Add Room</a>
+<p>Generated URL: {% url 'add_room' hotel.id %}</p>

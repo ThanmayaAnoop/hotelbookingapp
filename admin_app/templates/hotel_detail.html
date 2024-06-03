@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ hotel.name }} Details</title>
+</head>
+<body>
+    <h1>{{ hotel.name }} ({{ hotel.star_rating }} Star)</h1>
+    <p>{{ hotel.address }}</p>
+    {% if hotel.photo %}
+        <img src="{{ hotel.photo.url }}" alt="Hotel Photo">
+    {% else %}
+        <p>No photo available</p>
+    {% endif %}
+    <h2>Owner:</h2>
+    <p>{{ hotel.owner_name }}</p>
+    {% if hotel.owner_photo %}
+        <img src="{{ hotel.owner_photo.url }}" alt="Owner Photo">
+    {% else %}
+        <p>No owner photo available</p>
+    {% endif %}
+    <p>Email: {{ hotel.owner_email }}</p>
+    <p>Phone: {{ hotel.owner_phone }}</p>
+    <h2>Rooms:</h2>
+    <ul>
+        {% for room in rooms %}
+        <li>{{ room.name }} - Rs.{{ room.entry_fee }} - {{ room.max_occupancy_adults }} Adults {{ room.max_occupancy_children }} Children</li>
+        {% empty %}
+        <li>No rooms available.</li>
+        {% endfor %}
+    </ul>
+    <h2>Bookings:</h2>
+    <p>Today: {{ active_bookings_today }}</p>
+    <p>Total: {{ total_bookings }}</p>
+    <a href="{% url 'add_room' hotel.id %}">Add Room</a>
+    <a href="{% url 'edit_hotel' hotel.id %}">Edit Hotel</a>
+    <a href="{% url 'delete_hotel' hotel.id %}">Delete Hotel</a>
+</body>
+</html>

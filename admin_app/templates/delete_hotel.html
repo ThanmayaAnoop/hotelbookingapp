@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Hotel</title>
+</head>
+<body>
+    <h1>Delete Hotel: {{ hotel.name }}</h1>
+    <p>Are you sure you want to delete this hotel?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Hotel</button>
+    </form>
+    <a href="{% url 'hotel_detail' hotel.id %}">Cancel</a>
+</body>
+</html>
+

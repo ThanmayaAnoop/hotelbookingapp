@@ -11,7 +11,7 @@
     <h2>Active:</h2>
     <ul>
         {% for hotel in active_hotels %}
-        <li><a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a> ({{ hotel.total_rooms }} Rooms) ({{ hotel.total_occupancy }} Occupants) ({{ hotel.star_rating }} Star)</li>
+        <li><a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a>(ID: {{ hotel.id }}) ({{ hotel.total_rooms }} Rooms) ({{ hotel.total_occupancy }} Occupants) ({{ hotel.star_rating }} Star)</li>
         {% endfor %}
     </ul>
 
